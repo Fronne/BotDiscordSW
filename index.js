@@ -1,20 +1,3 @@
-/* Premiere solution
-var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-var xhr = new XMLHttpRequest(); 
-xhr.open('GET', 'https://swq.jp/l/fr-FR/');
-xhr.onreadystatechange = function() {
-  if (xhr.readyState === 4) {
-    var reponse = JSON.parse(xhr.responseText);
-    return reponse.name
-    //console.log(xhr.response);
-    //return xhr.response
-  }
-  
-};
-//xhr.send();
-console.log(reponse.name);
-*/
-
 // Deuxième solution
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var xhr = new XMLHttpRequest(); 
@@ -22,10 +5,6 @@ xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2
 xhr.send(null); 
     
 if (xhr.readyState == 4){
-    //var reponse = JSON.parse(xhr.responseText);
-    //console.warn(xhr.responseText)
-
-    //var donnee=JSON.parse(xhr.responseText)
     var resultString = "Liste des codes valides :";
     var donnee = JSON.parse(xhr.responseText);
     if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
