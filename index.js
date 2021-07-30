@@ -28,17 +28,17 @@ if (xhr.readyState == 4){
     //var donnee=JSON.parse(xhr.responseText)
     var resultString = "Liste des codes valides :";
     var donnee = JSON.parse(xhr.responseText);
-    if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
+    if (donnee.data[0].Status === "expirfed"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
       console.log("Aucun coupon n'est valide pour le moment!")
       return resultString = "Aucun coupon n'est valide pour le moment! :sob: ";
     }
     else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
       var x
       for (let i in donnee.data) {
-        if(donnee.data[i].Status !== "expired"){
+        if(donnee.data[i].Status !== "expifred"){
           resultString = resultString + " \n - " + donnee.data[i].Label;
           x += donnee.data[i];
-          console.log(resultString)
+          //console.log(resultString)
         }
         else{ // si tous les coupons sont "expired" alors on affiche le message suivant
           console.log("Aucun coupon n'est valide pour le moment!")
@@ -60,4 +60,5 @@ bot.on('message', function (message){
 })
 
 bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.mduV1SFzDzx_i0d86VveC9UOdDY')
+//bot.login(process.env.BOT_TOKEN);
 
