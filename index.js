@@ -42,6 +42,7 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 
 bot.on('message', function (message){
+  message.channel.send(resultString)
     if (message.content == '!code'){
         //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
         message.channel.send(resultString)
