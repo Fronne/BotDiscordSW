@@ -40,7 +40,22 @@ bot.on('message', function (message){
         message.channel.send(resultString)
         //message.channel.send("Message envoyé !")
     }
+
+    // tâche CRON
+    const CronJob = require('../lib/cron.js').CronJob;
+
+    console.log('Before job instantiation');
+    const job = new CronJob('0 */1 * * * *', function() {
+      const d = new Date();
+      console.log('Every Tenth Minute:', d);
+      message.channel.send('test Cron')
+    });
+    console.log('After job instantiation');
+    job.start();
 })
+
+
+
 
 bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.mduV1SFzDzx_i0d86VveC9UOdDY')
 //bot.login(process.env.BOT_TOKEN);
