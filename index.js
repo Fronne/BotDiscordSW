@@ -10,7 +10,8 @@ if (xhr.readyState == 4){
     if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
       console.log("Aucun coupon n'est valide pour le moment!")
       resultString = "Aucun coupon n'est valide pour le moment! :sob: ";
-      return resultString;
+      console.log(resultString)
+      //return resultString;
     }
     else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
       var x
@@ -18,14 +19,15 @@ if (xhr.readyState == 4){
         if(donnee.data[i].Status !== "expired"){
           resultString = resultString + " \n - " + donnee.data[i].Label;
           x += donnee.data[i];
-          //console.log(resultString)
+          console.log(resultString)
         }
         else{ // si tous les coupons sont "expired" alors on affiche le message suivant
           console.log("Aucun coupon n'est valide pour le moment!")
-          return resultString = "Aucun coupon n'est valide pour le moment! :sob: ";
+          resultString = "Aucun coupon n'est valide pour le moment! :sob: ";
         }
       }
     }
+    return resultString;
 }
 
 // Gestion du bot sur discord
@@ -34,9 +36,9 @@ const bot = new Discord.Client()
 
 bot.on('message', function (message){
     if (message.content == '!code'){
-        //message.reply(resultString)
+        //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
         message.channel.send(resultString)
-        message.channel.send("Message envoyé !")
+        //message.channel.send("Message envoyé !")
     }
 })
 
