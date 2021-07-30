@@ -42,7 +42,7 @@ bot.on('message', function (message){
     }
 
     // tâche CRON
-    const CronJob = require('../lib/cron.js').CronJob;
+    const CronJob = require('node_modules/cron/lib/cron.js').CronJob;
 
     console.log('Before job instantiation');
     const job = new CronJob('0 */1 * * * *', function() {
