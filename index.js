@@ -27,7 +27,7 @@ if (xhr.readyState == 4){
         }
       }
     }
-    return resultString;
+    //return resultString;
 }
 
 // Gestion du bot sur discord
