@@ -1,3 +1,9 @@
+const schedule = require("schedule")
+
+schedule.scheduleJob("10 * * * * *", () => {
+
+// Code to execute at midnight
+
 // Deuxième solution
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var xhr = new XMLHttpRequest(); 
@@ -5,25 +11,26 @@ xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2
 xhr.send(null); 
     
 if (xhr.readyState == 4){
-    var resultString = "Liste des codes valides :";
+    var resultString = "Liste des coupons:";
     var donnee = JSON.parse(xhr.responseText);
     if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
       console.log("Aucun coupon n'est valide pour le moment!")
       resultString = "Aucun coupon n'est valide pour le moment! :sob: ";
-      console.log(resultString)
+      
       //return resultString;
     }
     else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
       var x
       for (let i in donnee.data) {
         if(donnee.data[i].Status !== "expired"){
-          resultString = resultString + " \n - " + donnee.data[i].Label;
+          resultString = resultString + " \n - " + donnee.data[i].Label + " :white_check_mark:";
           x += donnee.data[i];
           console.log(resultString)
         }
-        else{ // si tous les coupons sont "expired" alors on affiche le message suivant
+        else if (resultString === "Liste des codes valides :"){ // si tous les coupons sont "expired" alors on affiche le message suivant
           console.log("Aucun coupon n'est valide pour le moment!")
           resultString = "Aucun coupon n'est valide pour le moment! :sob: ";
+          console.log('test')
         }
       }
     }
@@ -40,23 +47,10 @@ bot.on('message', function (message){
         message.channel.send(resultString)
         //message.channel.send("Message envoyé !")
     }
-
-    // tâche CRON
-    const CronJob = require('node_modules/cron/lib/cron.js').CronJob;
-
-    console.log('Before job instantiation');
-    const job = new CronJob('0 */1 * * * *', function() {
-      const d = new Date();
-      console.log('Every Tenth Minute:', d);
-      message.channel.send('test Cron')
-    });
-    console.log('After job instantiation');
-    job.start();
 })
 
-
-
-
+//Token Bot Discord
 bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.mduV1SFzDzx_i0d86VveC9UOdDY')
 //bot.login(process.env.BOT_TOKEN);
 
+});
