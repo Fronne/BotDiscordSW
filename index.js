@@ -10,7 +10,7 @@ xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2
 xhr.send(null); 
     
 if (xhr.readyState == 4){
-    var resultString = "Liste des coupons:";
+    var resultString = ":tickets: **LISTE DES COUPONS** :tickets: \n";
     var donnee = JSON.parse(xhr.responseText);
     if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
       console.log("Aucun coupon n'est disponible pour le moment!")
@@ -22,11 +22,11 @@ if (xhr.readyState == 4){
       var x
       for (let i in donnee.data) {
         if(donnee.data[i].Status !== "expired"){
-          resultString = resultString + " \n - " + donnee.data[i].Label + " :white_check_mark:";
+          resultString = resultString + " \n \t\t - *" + donnee.data[i].Label + "* \t :white_check_mark:";
           x += donnee.data[i];
           console.log(resultString)
         }
-        else if (resultString === "Liste des coupons:"){ // si tous les coupons sont "expired" alors on affiche le message suivant
+        else if (resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
           console.log("Aucun coupon n'est disponible pour le moment!")
           resultString = "Aucun coupon n'est disponible pour le moment! :sob: ";
           console.log('test')
@@ -43,12 +43,9 @@ const bot = new Discord.Client()
 bot.on("ready", () => {
   console.log("Bot is ready");
   bot.on('message', function (message){
-    //message.channel.send(resultString)
       if (message.content == '!code'){
           //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
           message.channel.send(resultString)
-          //console.log("Test passage zone discord")
-          //message.channel.send("Message envoyé !")
       }
 //       app=express();
 // cron.schedule("59 * * * * *",function(){
