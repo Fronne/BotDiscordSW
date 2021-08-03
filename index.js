@@ -19,12 +19,17 @@ if (xhr.readyState == 4){
       //return resultString;
     }
     else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
-      var x
       for (let i in donnee.data) {
         if(donnee.data[i].Status !== "expired"){
           resultString = resultString + " \n \t\t - *" + donnee.data[i].Label + "* \t :white_check_mark:";
-          x += donnee.data[i];
-          console.log(resultString)
+          console.log(donnee.data[i].Resources[0].Sw_Resource.Label)
+          // for (let a in donnee.data.Resources){
+            // if(donnee.data[i].Resources[i].Sw_Resource.Label === "Mana"){
+            //   resultString = resultString + "\t " + donnee.data[i].Resources[i].Sw_Resource.Quantity + ":Energy_SW:";
+            // }
+          // }
+          
+          
         }
         else if (resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
           console.log("Aucun coupon n'est disponible pour le moment!")
@@ -33,6 +38,7 @@ if (xhr.readyState == 4){
         }
       }
     }
+    console.log(resultString)
     //return resultString;
 }
 
@@ -43,15 +49,20 @@ const bot = new Discord.Client()
 bot.on("ready", () => {
   console.log("Bot is ready");
   bot.on('message', function (message){
-      if (message.content == '!code'){
-          //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
-          message.channel.send(resultString)
-      }
+      // if (message.content == '!code'){
+      //     //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
+      //     message.channel.send(resultString)
+      // }
+      
+      const sendMessage = () => { 
+        message.channel.send(resultString); 
+    }; 
+    setTimeout(sendMessage, 30000); // run the sendMessage() function every 24 hours 
 //       app=express();
-// cron.schedule("59 * * * * *",function(){
-//   console.log("Running task every minute");
-//   message.channel.send("Bot - Test")
-// });
+      // cron.schedule("59 * * * * *",function(){
+      //   console.log("Running task every minute");
+      //   message.channel.send("Bot - Test")
+      // });
   })
 });
 
