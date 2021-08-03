@@ -63,7 +63,7 @@ bot.on("ready", () => {
           //message.channel.send(resultString); 
           message.channel.send(embed);
         }; 
-        setTimeout(sendMessage, 10000); // run the sendMessage() function every 24 hours 
+        setTimeout(sendMessage, 10000000); // run the sendMessage() function every 24 hours 
       }
 
 //       app=express();
