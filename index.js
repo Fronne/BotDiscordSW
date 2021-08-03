@@ -1,15 +1,19 @@
-// const cron = require("node-cron");
-// const express =  require("express");
-// const fs = require("fs");
-
+// Gestion du bot sur discord
+const Discord = require('discord.js')
+const bot = new Discord.Client()
+const embed = new Discord.MessageEmbed()
 
 // Deuxième solution
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var xhr = new XMLHttpRequest(); 
 xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
 xhr.send(null); 
-    
+
+  
+  
 if (xhr.readyState == 4){
+
+  
     var resultString = ":tickets: **LISTE DES COUPONS** :tickets: \n";
     var donnee = JSON.parse(xhr.responseText);
     if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
@@ -21,6 +25,9 @@ if (xhr.readyState == 4){
     else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
       for (let i in donnee.data) {
         if(donnee.data[i].Status !== "expired"){
+          
+          embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
+          embed.addFields({ name: 'Récompenses : En Cours De Développement !', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark:'})
           resultString = resultString + " \n \t\t - *" + donnee.data[i].Label + "* \t :white_check_mark:";
           console.log(donnee.data[i].Resources[0].Sw_Resource.Label)
           // for (let a in donnee.data.Resources){
@@ -42,9 +49,7 @@ if (xhr.readyState == 4){
     //return resultString;
 }
 
-// Gestion du bot sur discord
-const Discord = require('discord.js')
-const bot = new Discord.Client()
+
 
 bot.on("ready", () => {
   console.log("Bot is ready");
@@ -53,11 +58,14 @@ bot.on("ready", () => {
       //     //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
       //     message.channel.send(resultString)
       // }
-      
-      const sendMessage = () => { 
-        message.channel.send(resultString); 
-    }; 
-    setTimeout(sendMessage, 30000); // run the sendMessage() function every 24 hours 
+      if(donnee.data[0].Last_Check.unixms > Date.now()){
+        const sendMessage = () => { 
+          //message.channel.send(resultString); 
+          message.channel.send(embed);
+        }; 
+        setTimeout(sendMessage, 10000); // run the sendMessage() function every 24 hours 
+      }
+
 //       app=express();
       // cron.schedule("59 * * * * *",function(){
       //   console.log("Running task every minute");
@@ -65,6 +73,9 @@ bot.on("ready", () => {
       // });
   })
 });
+
+
+
 
 
 
