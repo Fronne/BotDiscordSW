@@ -58,12 +58,15 @@ bot.on("ready", () => {
       //     //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
       //     message.channel.send(resultString)
       // }
-      if(donnee.data[0].Last_Check.unixms > Date.now()){
+      if (message.author.id !== "315497486527496192" && message.author.id !== "870270988372283432"){ 
+          console.log("Vous n'avez pas les droits pour démarrer le Bot !");
+      }
+      else if(donnee.data[0].Last_Check.unix > (Math.round(Date.now()/1000)-3600)){ // modifier pour faire > date.now - 1 heure ou plus
         const sendMessage = () => { 
           //message.channel.send(resultString); 
           message.channel.send(embed);
         }; 
-        setTimeout(sendMessage, 10000000); // run the sendMessage() function every 24 hours 
+        setTimeout(sendMessage, 10000000); // run the sendMessage() function every 1 hour
       }
 
 //       app=express();
