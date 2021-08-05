@@ -1,7 +1,7 @@
 // Gestion du bot sur discord
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-const embed = new Discord.MessageEmbed()
+
 
 // // Deuxième solution
 // var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
@@ -68,12 +68,12 @@ bot.on("ready", () => {
         const sendMessage = () => { 
           //message.channel.send(resultString); 
           // Deuxième solution
-        var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
-        var xhr = new XMLHttpRequest(); 
-        xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
-        xhr.send(null); 
+        // var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+        // var xhr = new XMLHttpRequest(); 
+        // xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
+        // xhr.send(null); 
 
-          
+        var embed = new Discord.MessageEmbed()
           
         if (xhr.readyState == 4){
 
@@ -105,6 +105,7 @@ bot.on("ready", () => {
                 else if (resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
                   console.log("Aucun coupon n'est disponible pour le moment!")
                   resultString = "Aucun coupon n'est disponible pour le moment! :sob: ";
+                  embed = resultString;
                   console.log('test')
                 }
               }
@@ -113,8 +114,10 @@ bot.on("ready", () => {
             //return resultString;
         }
           message.channel.send(embed);
+          //message.channel.send(resultString);
+          embed = "";
         }; 
-        setTimeout(sendMessage, 10000); // run the sendMessage() function every 1 hour
+        setTimeout(sendMessage, 10000000); // run the sendMessage() function every 1 hour
       }
 
 //       app=express();
