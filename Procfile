@@ -1,2 +1,2 @@
 worker: node index.js
-worker: node code.js
+code: node code.js
