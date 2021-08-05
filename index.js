@@ -40,7 +40,7 @@ bot.on("ready", () => {
             }
             else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
               for (let i in donnee.data) {
-                if(donnee.data[i].Status !== "expirred"){
+                if(donnee.data[i].Status !== "expired"){
                   var recompenses = "";
                   
                   resultString = resultString + " \n \t\t - *" + donnee.data[i].Label + "* \t :white_check_mark:";
