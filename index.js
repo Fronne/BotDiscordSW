@@ -23,7 +23,7 @@ bot.on("ready", () => {
       }
       // if(message.content == '!start')
       // {
-        if(donnee.data[0].Last_Check.unix < (Math.round(Date.now()/1000)-3600)){ // modifier pour faire > date.now - 1 heure ou plus
+        if(donnee.data[0].Last_Check.unix > (Math.round(Date.now()/1000)-3600)){ // modifier pour faire > date.now - 1 heure ou plus
           //message.reply('Le bot a bien démarré !')
           const sendMessage = () => { 
 
