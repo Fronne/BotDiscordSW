@@ -29,7 +29,7 @@ bot.on("ready", () => {
 
             var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
             var xhr = new XMLHttpRequest(); 
-            xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=10', false); 
+            xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
             //xhr.responseType = 'json';
             xhr.send(null); 
             var donnee = JSON.parse(xhr.responseText);
@@ -103,12 +103,26 @@ bot.on("ready", () => {
                         {
                           emoji = '<:Crystal:873178782243106826>'
                         }
-                        var recompenses =  recompenses  + '\t' + emoji + ' x ' + donnee.data[i].Resources[a].Quantity + '\t';
+                        if(donnee.data[i].Resources[a].Quantity === '50000'){
+                          var recompenses =  recompenses  + '\t' + emoji + ' x ' + '50.000' + '\t';
+                        }
+                        else if(donnee.data[i].Resources[a].Quantity === '100000'){
+                          var recompenses =  recompenses  + '\t' + emoji + ' x ' + '100.000' + '\t';
+                        }
+                        else if(donnee.data[i].Resources[a].Quantity === '200000'){
+                          var recompenses =  recompenses  + '\t' + emoji + ' x ' + '200.000' + '\t';
+                        }
+                        else if(donnee.data[i].Resources[a].Quantity === '300000'){
+                          var recompenses =  recompenses  + '\t' + emoji + ' x ' + '300.000' + '\t';
+                        }
+                        else{
+                          var recompenses =  recompenses  + '\t' + emoji + ' x ' + donnee.data[i].Resources[a].Quantity + '\t';
+                        }
                       }
                       embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
                       //embed.setURL('https://swq.jp/l/fr-FR/') // lien pour le titre du embed
                       //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible 
-                      embed.addFields({ name: recompenses, value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark:', inline: true})
+                      embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
                       //embed.addFields({ name: '-->' ,value: '[Lien vers le site](https://swq.jp/l/fr-FR/)'})    
                                
                     }
@@ -118,6 +132,7 @@ bot.on("ready", () => {
                       embed = resultString;
                     }
                   }
+                  //embed.addFields({ name: '\u200B', value: '--> [Lien du site](https://swq.jp/)' })  // exemple de fields invisible 
                 }
                 console.log(resultString)
                 //return resultString;
