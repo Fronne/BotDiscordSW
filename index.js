@@ -5,7 +5,7 @@ const bot = new Discord.Client()
 
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var xhr = new XMLHttpRequest(); 
-xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
+xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=10', false); 
 //xhr.responseType = 'json';
 xhr.send(null); 
 var donnee = JSON.parse(xhr.responseText);
@@ -29,7 +29,7 @@ bot.on("ready", () => {
 
             var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
             var xhr = new XMLHttpRequest(); 
-            xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
+            xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=10', false); 
             //xhr.responseType = 'json';
             xhr.send(null); 
             var donnee = JSON.parse(xhr.responseText);
@@ -60,56 +60,57 @@ bot.on("ready", () => {
                         // condition pour vélin Light & Dark
                         if(emoji === 'Light & Dark Scroll')
                         {
-                          emoji = ':Light&DarkScroll:'
+                          emoji = '<:LightDarkScroll:873178783702724658>'
                         }
                         // condition pour l'Energie
                         if(emoji === 'Energy')
                         {
-                          emoji = '<:energy:871310848918958090>';
+                          emoji = '<:energy:873178782251503637>';
                           //console.log(emoji);
                         }
                         // condition pour le Mana
                         if(emoji === 'Mana')
                         {
-                          emoji = ':Mana:'
+                          emoji = '<:Mana:873178782557683733>'
                         }
                         // condition pour vélin mystique
                         if(emoji === 'Mystical Scroll')
                         {
-                          emoji = ':MysticalScroll:'
+                          emoji = '<:MysticalScroll:873178783451078726>'
                         }
                         // condition pour les pierres d'invocations
                         if(emoji === 'Summoning Stone')
                         {
-                          emoji = ':SummoningStone:'
+                          emoji = '<:SummoningStone:873178783631442000>'
                         }
                         // condition pour les vélin d'eau
                         if(emoji === 'Water Scroll')
                         {
-                          emoji = ':WaterScroll:'
+                          emoji = '<:WaterScroll:873178783639830558>'
                         }
                         // condition pour les vélin de feu
                         if(emoji === 'Fire Scroll')
                         {
-                          emoji = ':FireScroll:'
+                          emoji = '<:FireScroll:873178783497191424>'
                         }
                         // condition pour vélin de vent
                         if(emoji === 'Air Scroll')
                         {
-                          emoji = ':WindScroll:'
+                          emoji = '<:WindScroll:873178783434309663>'
                         }
                         // condition pour les cristaux
                         if(emoji === 'Crystal')
                         {
-                          emoji = ':Crystal:'
+                          emoji = '<:Crystal:873178782243106826>'
                         }
                         var recompenses =  recompenses  + '\t' + emoji + ' x ' + donnee.data[i].Resources[a].Quantity + '\t';
                       }
                       embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
                       //embed.setURL('https://swq.jp/l/fr-FR/') // lien pour le titre du embed
-                      embed.addFields({ name: recompenses, value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark:'})
+                      //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible 
+                      embed.addFields({ name: recompenses, value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark:', inline: true})
                       //embed.addFields({ name: '-->' ,value: '[Lien vers le site](https://swq.jp/l/fr-FR/)'})    
-                      //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible          
+                               
                     }
                     else if (resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
                       console.log("Aucun coupon n'est disponible pour le moment!")
@@ -125,7 +126,7 @@ bot.on("ready", () => {
               //message.channel.send(resultString);
               embed = "";
             }; 
-          setTimeout(sendMessage, 10000); // run the sendMessage() function every 1 hour
+          setTimeout(sendMessage, 10000000); // run the sendMessage() function every 1 hour
         }
       // }
       // if(message.content == '!stop'){
