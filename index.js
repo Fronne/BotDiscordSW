@@ -23,7 +23,7 @@ bot.on("ready", () => {
       }
       // if(message.content == '!start')
       // {
-        if(donnee.data[0].Last_Check.unix > (Math.round(Date.now()/1000)-3600)){ // modifier pour faire > date.now - 1 heure ou plus
+        if(donnee.data[0].Last_Check.unix < (Math.round(Date.now()/1000)-3600)){ // modifier pour faire > date.now - 1 heure ou plus
           //message.reply('Le bot a bien démarré !')
           const sendMessage = () => { 
 
@@ -65,7 +65,7 @@ bot.on("ready", () => {
                         // condition pour l'Energie
                         if(emoji === 'Energy')
                         {
-                          emoji = ':energy:';
+                          emoji = '<:energy:871310848918958090>';
                           //console.log(emoji);
                         }
                         // condition pour le Mana
@@ -125,7 +125,7 @@ bot.on("ready", () => {
               //message.channel.send(resultString);
               embed = "";
             }; 
-          setTimeout(sendMessage, 10000000); // run the sendMessage() function every 1 hour
+          setTimeout(sendMessage, 10000); // run the sendMessage() function every 1 hour
         }
       // }
       // if(message.content == '!stop'){
