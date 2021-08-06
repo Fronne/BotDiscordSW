@@ -1,0 +1,127 @@
+const Discord = require('discord.js')
+const bot = new Discord.Client()
+
+
+
+
+bot.on("ready", () => {
+    console.log("Bot is ready");
+    bot.on('message', function (message){
+        //   if (message.content == '!code'){
+        //       //message.reply(resultString) // repond avec le @ de  l'utilisateur qui envoi la commande
+        //       message.channel.send(resultString)
+        //   }
+      
+
+        if(message.content == '!code' || message.content == '!c'){ 
+
+            var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
+            var xhr = new XMLHttpRequest(); 
+            xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=20', false); 
+            //xhr.responseType = 'json';
+            xhr.send(null); 
+            var donnee = JSON.parse(xhr.responseText);
+
+            var embed = new Discord.MessageEmbed()
+            
+            if (xhr.readyState == 4){
+
+            
+                var resultString = ":tickets: **LISTE DES COUPONS** :tickets: \n";
+                var donnee = JSON.parse(xhr.responseText);
+                if (donnee.data[0].Status === "expired"){  //Vérifie que le status du dernier coupon en date est égale à "expired"
+                console.log("Aucun coupon n'est disponible pour le moment!")
+                resultString = "Aucun coupon n'est disponible pour le moment! :sob: ";
+                
+                //return resultString;
+                }
+                else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
+                    for (let i in donnee.data) {
+                        if(donnee.data[i].Status !== "expired"){
+                            var recompenses = "";
+                            
+                            resultString = resultString + " \n \t\t - *" + donnee.data[i].Label + "* \t :white_check_mark:";
+
+                            for (var a = 0; a < donnee.data[i].Resources.length; a++) {
+                                //console.log(donnee.data[i].Resources[a].Sw_Resource.Label);
+                                var emoji = donnee.data[i].Resources[a].Sw_Resource.Label;
+                                // condition pour vélin Light & Dark
+                                if(emoji === 'Light & Dark Scroll')
+                                {
+                                emoji = ':Light&DarkScroll:'
+                                }
+                                // condition pour l'Energie
+                                if(emoji === 'Energy')
+                                {
+                                emoji = ':energy:';
+                                //console.log(emoji);
+                                }
+                                // condition pour le Mana
+                                if(emoji === 'Mana')
+                                {
+                                emoji = ':Mana:'
+                                }
+                                // condition pour vélin mystique
+                                if(emoji === 'Mystical Scroll')
+                                {
+                                emoji = ':MysticalScroll:'
+                                }
+                                // condition pour les pierres d'invocations
+                                if(emoji === 'Summoning Stone')
+                                {
+                                emoji = ':SummoningStone:'
+                                }
+                                // condition pour les vélin d'eau
+                                if(emoji === 'Water Scroll')
+                                {
+                                emoji = ':WaterScroll:'
+                                }
+                                // condition pour les vélin de feu
+                                if(emoji === 'Fire Scroll')
+                                {
+                                emoji = ':FireScroll:'
+                                }
+                                // condition pour vélin de vent
+                                if(emoji === 'Air Scroll')
+                                {
+                                emoji = ':WindScroll:'
+                                }
+                                // condition pour les cristaux
+                                if(emoji === 'Crystal')
+                                {
+                                emoji = ':Crystal:'
+                                }
+                                var recompenses =  recompenses  + '\t' + emoji + ' x ' + donnee.data[i].Resources[a].Quantity + '\t';
+                            }
+                        
+                            embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
+                            //embed.setURL('https://swq.jp/l/fr-FR/') // lien pour le titre du embed
+                            embed.addFields({ name: recompenses, value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark:'})
+                            //embed.addFields({ name: '-->' ,value: '[Lien vers le site](https://swq.jp/l/fr-FR/)'})    
+                            //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible         
+                        }    
+                    }
+                
+                        if(resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
+                            console.log("Aucun coupon n'est disponible pour le moment!")
+                            resultString = "Aucun coupon n'est disponible pour le moment! :sob: ";
+                            embed = resultString;
+                        }
+                    
+                }
+                
+                console.log(resultString)
+                //return resultString;
+            }
+            message.channel.send(embed);
+            //message.channel.send(resultString);
+            embed = "";
+            
+        }    
+    });    
+});
+
+
+//Token Bot Discord
+bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.mduV1SFzDzx_i0d86VveC9UOdDY');
+//bot.login(process.env.BOT_TOKEN);
