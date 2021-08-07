@@ -48,50 +48,64 @@ bot.on("ready", () => {
                                 // condition pour vélin Light & Dark
                                 if(emoji === 'Light & Dark Scroll')
                                 {
-                                emoji = ':Light&DarkScroll:'
+                                emoji = '<:LightDarkScroll:873178783702724658>'
                                 }
                                 // condition pour l'Energie
                                 if(emoji === 'Energy')
                                 {
-                                emoji = ':energy:';
+                                emoji = '<:energy:873178782251503637>';
                                 //console.log(emoji);
                                 }
                                 // condition pour le Mana
                                 if(emoji === 'Mana')
                                 {
-                                emoji = ':Mana:'
+                                emoji = '<:Mana:873178782557683733>'
                                 }
                                 // condition pour vélin mystique
                                 if(emoji === 'Mystical Scroll')
                                 {
-                                emoji = ':MysticalScroll:'
+                                emoji = '<:MysticalScroll:873178783451078726>'
                                 }
                                 // condition pour les pierres d'invocations
                                 if(emoji === 'Summoning Stone')
                                 {
-                                emoji = ':SummoningStone:'
+                                emoji = '<:SummoningStone:873178783631442000>'
                                 }
                                 // condition pour les vélin d'eau
                                 if(emoji === 'Water Scroll')
                                 {
-                                emoji = ':WaterScroll:'
+                                emoji = '<:WaterScroll:873178783639830558>'
                                 }
                                 // condition pour les vélin de feu
                                 if(emoji === 'Fire Scroll')
                                 {
-                                emoji = ':FireScroll:'
+                                emoji = '<:FireScroll:873178783497191424>'
                                 }
                                 // condition pour vélin de vent
                                 if(emoji === 'Air Scroll')
                                 {
-                                emoji = ':WindScroll:'
+                                emoji = '<:WindScroll:873178783434309663>'
                                 }
                                 // condition pour les cristaux
                                 if(emoji === 'Crystal')
                                 {
-                                emoji = ':Crystal:'
+                                emoji = '<:Crystal:873178782243106826>'
                                 }
+                                if(donnee.data[i].Resources[a].Quantity === '50000'){
+                                var recompenses =  recompenses  + '\t' + emoji + ' x ' + '50.000' + '\t';
+                                }
+                                else if(donnee.data[i].Resources[a].Quantity === '100000'){
+                                var recompenses =  recompenses  + '\t' + emoji + ' x ' + '100.000' + '\t';
+                                }
+                                else if(donnee.data[i].Resources[a].Quantity === '200000'){
+                                var recompenses =  recompenses  + '\t' + emoji + ' x ' + '200.000' + '\t';
+                                }
+                                else if(donnee.data[i].Resources[a].Quantity === '300000'){
+                                var recompenses =  recompenses  + '\t' + emoji + ' x ' + '300.000' + '\t';
+                                }
+                                else{
                                 var recompenses =  recompenses  + '\t' + emoji + ' x ' + donnee.data[i].Resources[a].Quantity + '\t';
+                                }
                             }
                         
                             embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
