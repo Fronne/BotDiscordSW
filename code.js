@@ -110,7 +110,7 @@ bot.on("ready", () => {
                         
                             embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
                             //embed.setURL('https://swq.jp/l/fr-FR/') // lien pour le titre du embed
-                            embed.addFields({ name: recompenses, value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark:'})
+                            embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
                             //embed.addFields({ name: '-->' ,value: '[Lien vers le site](https://swq.jp/l/fr-FR/)'})    
                             //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible         
                         }    
