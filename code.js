@@ -111,10 +111,10 @@ bot.on("ready", () => {
                             embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
                             //embed.setURL('https://swq.jp/l/fr-FR/') // lien pour le titre du embed
                             embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
-                            embed.addFields({ name: '\u200B', value: '[Lien vers le site](https://swq.jp/l/fr-FR/)' }) 
                             //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible         
                         }    
                     }
+                        embed.addFields({ name: '\u200B', value: '[Lien du site](https://swq.jp/)' })
                 
                         if(resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
                             console.log("Aucun coupon n'est disponible pour le moment!")
