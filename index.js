@@ -27,7 +27,7 @@ bot.on("ready", () => {
       else{
       // if(message.content == '!start')
       // {
-        if( count != '12'){ 
+        if(lastCheck != donnee.data[0].Label || count === '0'){ 
           //message.reply('Le bot a bien démarré !')
           const sendMessage = () => { 
             count ++
@@ -144,7 +144,7 @@ bot.on("ready", () => {
                 console.log(resultString)
                 //return resultString;
             }
-              message.channel.send(embed, count);
+              message.channel.send(embed);
               //message.channel.send(resultString);
               embed = "";
           }; 
