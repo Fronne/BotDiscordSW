@@ -26,7 +26,6 @@ bot.on("ready", () => {
       }
       // if(message.content == '!start')
       // {
-      // if(donnee.data[0].Last_Check.unix > (Math.round(Date.now()/1000)-3600)){ // modifier pour faire > date.now - 1 heure ou plus
       else if(lastCheck != donnee.data[0].Label || count === '0'){ 
         //message.reply('Le bot a bien démarré !')
         const sendMessage = () => { 
@@ -52,7 +51,6 @@ bot.on("ready", () => {
                 console.log("Aucun coupon n'est disponible pour le moment!")
                 resultString = "Aucun coupon n'est disponible pour le moment! :sob: ";
                 
-                //return resultString;
               }
               else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
                 for (let i in donnee.data) {
@@ -130,6 +128,7 @@ bot.on("ready", () => {
                     //embed.setURL('https://swq.jp/l/fr-FR/') // lien pour le titre du embed
                     //embed.addFields({ name: '\u200B', value: '\u200B' })  // exemple de fields invisible 
                     embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
+                    embed.addFields({ name: '\u200B', value: '[Lien vers le site](https://swq.jp/l/fr-FR/)' })  // exemple de fields invisible 
                     //embed.addFields({ name: '-->' ,value: '[Lien vers le site](https://swq.jp/l/fr-FR/)'})    
                               
                   }
