@@ -143,7 +143,7 @@ setInterval(function() {
 
     }
     
-}, 5 * 1000); // 60 * 1000 milsec
+}, 3000 * 1000); // 60 * 1000 milsec
 
 });
 
