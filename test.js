@@ -142,9 +142,20 @@ setInterval(function() {
             });
 
         }
+        else{
+            bot.on("ready", () => {
+                console.log("Bot is ready");
+                //message.channel.send(embed);
+                const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+                channel.send('test');
+                
+                embed = "";
+
+            });
+        }
     }
     
-}, 1 * 1000); // 60 * 1000 milsec
+}, 30 * 1000); // 60 * 1000 milsec
 
 
 
