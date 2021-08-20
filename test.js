@@ -1,7 +1,7 @@
 // Gestion du bot sur discord
 const Discord = require('discord.js')
 const bot = new Discord.Client()
-//const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+// const channel = bot.channels.cache.find(channel => channel.name === 'sw')
 var count = 0
 
 
@@ -10,8 +10,6 @@ var count = 0
 // xhr.open("GET", 'https://swq.jp/_special/rest/Sw/Coupon?_csrf_token=JAH84YCjSnw2C_5cCMfx3HzJzGMWOHe9FSRJediA8PkMq7ec9LC6Ph3E0DrJrRllafJTrCnaOz89ag6ytAzQjp3nNe4JSxikbKGDnbpA8w0OFW0auiF8Ro7Ga0wWzPlAJyfbcJPWjIM&_ctx[b]=master&_ctx[c]=JPY&_ctx[l]=fr-FR&_ctx[t]=Europe/Paris;+0200&results_per_page=10', false); 
 // xhr.send(null); 
 // var donnee = JSON.parse(xhr.responseText);
-
-var lastCheck
 
 bot.on("ready", () => {
 setInterval(function() {
@@ -22,7 +20,7 @@ setInterval(function() {
     //xhr.responseType = 'json';
     xhr.send(null); 
     var donnee = JSON.parse(xhr.responseText);
-    lastCheck = donnee.data[0].Label
+    var lastCheck = donnee.data[0].Label
 
     
 
@@ -134,7 +132,7 @@ setInterval(function() {
                 
                 console.log("Bot is ready");
                 //message.channel.send(embed);
-                const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+                const channel = bot.channels.cache.find(channel => channel.name === 'code-sw')
                 channel.send(embed);
                 
                 embed = "";
