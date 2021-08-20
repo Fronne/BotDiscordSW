@@ -5,6 +5,12 @@ const bot = new Discord.Client()
 var count = 0
 let tab1 = [];
 let tab2 = [];
+var now = new Date();
+var mois    = ('0'+(now.getMonth()+1)).slice(-2);
+var jour    = ('0'+now.getDate()   ).slice(-2);
+var heure   = ('0'+now.getHours()  ).slice(-2);
+var minute  = ('0'+now.getMinutes()).slice(-2);
+var annee  = ('0'+now.getFullYear()).slice(-2)
 
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var xhr = new XMLHttpRequest(); 
@@ -151,13 +157,14 @@ setInterval(function() {
                         embed = resultString;
                         }
                     }
-                embed.addFields({ name: '\u200B', value: '[Lien du site](https://swq.jp/)' })  // exemple de fields invisible 
+                //embed.addFields({ name: '\u200B', value: '[Lien du site](https://swq.jp/)', inline: true })  // exemple de fields invisible 
+                embed.addFields({ name: '\u200B', value: 'Mis à jour le ' +jour+"/"+mois+"/"+annee + "  à  " + heure + "h" + minute , inline: true })  // exemple de fields invisible 
                 }
                 console.log(resultString)
                 
                 console.log("Bot is ready");
                 //message.channel.send(embed);
-                const channel = bot.channels.cache.find(channel => channel.name === 'code-sw')
+                const channel = bot.channels.cache.find(channel => channel.name === 'sw')
                 channel.send(embed);
                 
                 embed = "";
