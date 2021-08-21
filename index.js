@@ -166,7 +166,7 @@ setInterval(function() {
                 
                 console.log("Bot is ready");
                 //message.channel.send(embed);
-                const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+                const channel = bot.channels.cache.find(channel => channel.name === 'code-sw')
                 channel.send(embed);
                 
                 embed = "";
@@ -177,7 +177,7 @@ setInterval(function() {
 
     }
     
-}, 5 * 1000); // 60 * 1000 milsec
+}, 2000 * 1000); // 60 * 1000 milsec
 
 });
 
