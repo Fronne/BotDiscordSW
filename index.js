@@ -3,7 +3,7 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 // const channel = bot.channels.cache.find(channel => channel.name === 'sw')
 var count = 0
-let tab1 = [];
+let tab1 = ['test','test'];
 let tab2 = [];
 var now = new Date();
 var mois    = ('0'+(now.getMonth()+1)).slice(-2);
@@ -19,11 +19,11 @@ xhr.send(null);
 var donnee = JSON.parse(xhr.responseText);
 
 
-for(let i in donnee.data){
-  if(donnee.data[i].Status !== "expired"){
-    tab1[i] = donnee.data[i].Label
-  }
-}
+// for(let i in donnee.data){
+//   if(donnee.data[i].Status !== "expired"){
+//     tab1[i] = donnee.data[i].Label
+//   }
+// }
 
 bot.on("ready", () => {
 setInterval(function() {
@@ -55,7 +55,9 @@ setInterval(function() {
     if (xhr.readyState == 4){
 
         // if(lastCheck != donnee.data[0].Label || count == '0'){ 
-          if(arraysAreIdentical(tab1, tab2) == true){
+          if(arraysAreIdentical(tab1, tab2) == false){
+            console.table(tab1)
+            tab1 = tab2;
             console.table(tab1)
             console.table(tab2)
 
@@ -175,7 +177,7 @@ setInterval(function() {
 
     }
     
-}, 3000 * 1000); // 60 * 1000 milsec
+}, 5 * 1000); // 60 * 1000 milsec
 
 });
 
