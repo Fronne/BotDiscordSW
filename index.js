@@ -3,14 +3,50 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 // const channel = bot.channels.cache.find(channel => channel.name === 'sw')
 var count = 0
-let tab1 = [];
-let tab2 = [];
+let tab1 = [1,2,3,4,5];
+let tab2 = [0,2,3,4,5];
+let tab3 = [12];
 var now = new Date();
 var mois    = ('0'+(now.getMonth()+1)).slice(-2);
 var jour    = ('0'+now.getDate()   ).slice(-2);
 var heure   = ('0'+now.getHours()  ).slice(-2);
 var minute  = ('0'+now.getMinutes()).slice(-2);
 var annee  = ('0'+now.getFullYear()).slice(-2)
+
+
+
+function arraysAreIdentical(tab1, tab2){
+  if (tab1.length !== tab2.length) return false;
+  a = 0;
+  for (var i = 0, len = tab1.length; i < len; i++){
+      // if (tab1[i] !== tab2[i]){
+      //     //return false;
+      //     console.log(i);
+      // }
+      // if (i == tab1.length - 1){
+      //     a++;"²&"
+      //     i = -1 
+      // }
+      for (let a = 0; a < tab2.length; a++) {
+        if (tab1[i] !== tab2[a]){
+          //return false;
+          if(tab3.includes(6) == false){
+              tab3 = a;
+              console.log(tab3);
+          }
+
+          //console.log(b)
+        }
+        else{
+          //console.log(a)
+        }
+        
+      }
+  }
+  return true; 
+}
+
+arraysAreIdentical(tab1, tab2)
 
 var XMLHttpRequest = require('xmlhttprequest').XMLHttpRequest;
 var xhr = new XMLHttpRequest(); 
@@ -45,6 +81,7 @@ setInterval(function() {
       if (tab1.length !== tab2.length) return false;
       for (var i = 0, len = tab1.length; i < len; i++){
           if (tab1[i] !== tab2[i]){
+              //console.log(donnee.data[i].Label);
               return false;
           }
       }
