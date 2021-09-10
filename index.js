@@ -188,9 +188,8 @@ console.log('active')
                 
                 console.log("Bot is ready");
                 //message.channel.send(embed);
-                const channel = bot.channels.cache.find(channel => channel.name === 'code-sw')
-                channel.send(embed);
-                
+                const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+                channel.send(embed);                
                 embed = "";
 
                 
