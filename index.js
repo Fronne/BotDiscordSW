@@ -73,7 +73,7 @@ setInterval(function() {
       return true; 
     }
   
-console.log('active')
+console.log('actif')
     if (xhr.readyState == 4){
 
         // if(lastCheck != donnee.data[0].Label || count == '0'){ 
