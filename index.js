@@ -3,8 +3,8 @@ const Discord = require('discord.js')
 const bot = new Discord.Client()
 // const channel = bot.channels.cache.find(channel => channel.name === 'sw')
 var count = 0
-let tab1 = ['test', '123', '456'];
-let tab2 = ['test','code1', 'code2', 'code3', 'code4'];
+let tab1 = [];
+let tab2 = [];
 let tab3 = [];
 var now = new Date();
 var mois    = ('0'+(now.getMonth()+1)).slice(-2);
@@ -61,7 +61,7 @@ setInterval(function() {
       }
     }
 
-    newCodes(tab1, tab2);
+    //newCodes(tab1, tab2);
     function arraysAreIdentical(tab1, tab2){
       if (tab1.length !== tab2.length) return false;
       for (var i = 0, len = tab1.length; i < len; i++){
@@ -81,7 +81,7 @@ console.log('active')
                         
             console.table(tab1)
             console.table(tab2)
-            tab1 = tab2;
+            
             //message.reply('Le bot a bien démarré !')
             
             count ++
@@ -100,7 +100,13 @@ console.log('active')
                 }
                 else{ // si dernier coupon n'est pas "expired" alors on vérifie le status de tout les coupons et on affiche ceux qui on un status different de "expired"
                   for (let i in donnee.data) {
+                    if(donnee.data[i].Status !== "expired"){
+                      //console.log(donnee.data[i].Label);
+                      newCodes(tab1,tab2);
+                      tab1 = tab2;
+                      //console.table(tab3)
                         if(tab3.indexOf(donnee.data[i].Label) === 1){
+                          console.log("test passage");
                         // if(donnee.data[i].Status !== "expired"){
                             var recompenses = "";
                             resultString = resultString + " \n \t\t - *" + donnee.data[i].Label + "* \t :white_check_mark:";
@@ -172,64 +178,26 @@ console.log('active')
                             }
                             embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
                             embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
-
-                                
+                            embed.addFields({ name: '\u200B', value: 'Mis à jour le ' +jour+"/"+mois+"/"+annee + "  à  " + heure + "h" + minute , inline: true })  // exemple de fields invisible 
+                               
+                            console.log(resultString)
+                
+                            console.log("Bot is ready");
+                            //message.channel.send(embed);
+                            const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+                            channel.send(embed);                
+                            embed = "";
                         }
-                        // else if (resultString === ":tickets: **LISTE DES COUPONS** :tickets: \n"){ // si tous les coupons sont "expired" alors on affiche le message suivant
-                        // console.log("Aucun coupon n'est disponible pour le moment!")
-                        // resultString = "Aucun coupon n'est disponible pour le moment! :sob: ";
-                        // embed = resultString;
-                        // }
-                    }
-                //embed.addFields({ name: '\u200B', value: '[Lien du site](https://swq.jp/)', inline: true })  // exemple de fields invisible 
-                embed.addFields({ name: '\u200B', value: 'Mis à jour le ' +jour+"/"+mois+"/"+annee + "  à  " + heure + "h" + minute , inline: true })  // exemple de fields invisible 
+                      }
+                    }             
                 }
-                console.log(resultString)
-                
-                console.log("Bot is ready");
-                //message.channel.send(embed);
-                const channel = bot.channels.cache.find(channel => channel.name === 'sw')
-                channel.send(embed);                
-                embed = "";
-
-                
-
         }
-
     }
     
-}, 200 * 10000); // 60 * 1000 milsec
+}, 200 * 1000); // 60 * 1000 milsec
 
 });
 
-
-
-
-
-
-
-
-
-
-
-// bot.on("ready", () => {
-//   console.log("Bot is ready");
-//   bot.on('message', function (message){
-      
-//       if(message.author.id !== "315497486527496192" && message.author.id !== "870270988372283432"){ 
-//           console.log("Vous n'avez pas les droits pour démarrer le Bot !");
-//       }
-//       else{
-//       // if(message.content == '!start')
-//       // {
-        
-//       } 
-//       // }
- 
-//   })
-// });
-
-
 //Token Bot Discord
-bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.mduV1SFzDzx_i0d86VveC9UOdDY');
+bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.1Jiel2EPrYwCsI-PMYfWnoLNU-Y');
 //bot.login(process.env.BOT_TOKEN);
