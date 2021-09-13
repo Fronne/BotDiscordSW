@@ -6,6 +6,8 @@ yarn-debug.log*
 yarn-error.log*
 lerna-debug.log*
 
+.node-xmlhttprequest*
+
 # Diagnostic reports (https://nodejs.org/api/report.html)
 report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 
@@ -104,5 +106,8 @@ dist
 .tern-port
 
 *.env
+<<<<<<< HEAD
 
 *.node-xmlhttprequest-sync-
+=======
+>>>>>>> ff4a35e07404fd5f559fe76de9e35e1ec7b1693f
