@@ -178,18 +178,22 @@ console.log('actif')
                             }
                             embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
                             embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
-                            embed.addFields({ name: '\u200B', value: 'Mis à jour le ' +jour+"/"+mois+"/"+annee + "  à  " + heure + "h" + minute , inline: true })  // exemple de fields invisible 
+                            
                                
-                            console.log(resultString)
+                            
                 
-                            console.log("Bot is ready");
-                            //message.channel.send(embed);
-                            const channel = bot.channels.cache.find(channel => channel.name === 'sw')
-                            channel.send(embed);                
-                            embed = "";
+                            
                         }
                       }
-                    }             
+                  } 
+
+                    embed.addFields({ name: '\u200B', value: 'Mis à jour le ' +jour+"/"+mois+"/"+annee + "  à  " + heure + "h" + minute , inline: true })  // exemple de fields invisible 
+                    console.log(resultString)
+                    console.log("Bot is ready");
+                    //message.channel.send(embed);
+                    const channel = bot.channels.cache.find(channel => channel.name === 'sw')
+                    channel.send(embed);                
+                    embed = "";            
                 }
         }
     }
