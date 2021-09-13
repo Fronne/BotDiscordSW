@@ -137,5 +137,5 @@ bot.on("ready", () => {
 
 
 //Token Bot Discord
-bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.mduV1SFzDzx_i0d86VveC9UOdDY');
+bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.1Jiel2EPrYwCsI-PMYfWnoLNU-Y');
 //bot.login(process.env.BOT_TOKEN);
