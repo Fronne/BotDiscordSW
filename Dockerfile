@@ -6,4 +6,4 @@ COPY package.json /app
 COPY index.js /app
 RUN npm install
 
-CMD node index.js
+CMD node index.js ; node code.js
