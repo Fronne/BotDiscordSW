@@ -203,5 +203,5 @@ console.log('actif')
 });
 
 //Token Bot Discord
-bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.1Jiel2EPrYwCsI-PMYfWnoLNU-Y');
+bot.login('ODcwMjcwOTg4MzcyMjgzNDMy.YQKVBA.D0EZKBcHxVTYhlhitSnmjO-u45k');
 //bot.login(process.env.BOT_TOKEN);
