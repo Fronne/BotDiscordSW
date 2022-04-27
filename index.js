@@ -177,12 +177,7 @@ console.log('actif')
                                 }
                             }
                             embed.setTitle(":tickets: **LISTE DES COUPONS** :tickets:")
-                            embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})
-                            
-                               
-                            
-                
-                            
+                            embed.addFields({ name: '\u200B', value: '[' + donnee.data[i].Label + '](http://withhive.me/313/' + donnee.data[i].Label + ') \t :white_check_mark: \t' + recompenses})           
                         }
                       }
                   } 
